@@ -1,0 +1,59 @@
+<!-- Ask user to select gender using radio button either male/female and using textbox input age. check for following conditions and 
+show output whether employee is eligible for insurance or not ?
+
+ a) employee gender is male and age is between 25 to 65
+ b) employee gender is female and age is between 21 to 61
+   -->
+<html>
+<head>
+
+    
+    <title>Insurance Eligibility Checker</title>
+</head>
+<body>
+    <h1>Insurance Eligibility Checker</h1>
+    <hr>
+
+    <div class="section">
+        <label>Select Gender:</label><br>
+        <input type="radio" name="gender" value="male" id="maleRadio">
+        <label for="maleRadio">Male</label><br>
+        <input type="radio" name="gender" value="female" id="femaleRadio">
+        <label for="femaleRadio">Female</label><br><br>
+
+        <label>Enter Age:</label><br>
+        <input type="number" id="ageInput" placeholder="Enter your age"><br><br>
+
+        <button onclick="checkEligibility()">Check Eligibility</button><br><br>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkEligibility() {
+            // Get gender value
+            var gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                alert("Please select your gender.");
+                return;
+            }
+            gender = gender.value;
+
+            // Get age value
+            var age = parseInt(document.getElementById("ageInput").value);
+            if (isNaN(age) || age <= 0) {
+                alert("Please enter a valid age.");
+                return;
+            }
+
+            // Check eligibility based on gender and age
+            if ((gender === "male" && age >= 25 && age <= 65) ||
+                (gender === "female" && age >= 21 && age <= 61)) {
+                document.getElementById("result").innerHTML = "You are eligible for insurance.";
+            } else {
+                document.getElementById("result").innerHTML = "You are not eligible for insurance.";
+            }
+        }
+    </script>
+</body>
+</html>
